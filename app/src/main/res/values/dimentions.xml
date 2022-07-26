@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_view">10dp</dimen>
+    <dimen name="radius_buttons">10dp</dimen>
+    <dimen name="size_titles">20dp</dimen>
+    <dimen name="size_subtitles">18dp</dimen>
+
+    <dimen name="radius_card">5dp</dimen>
+    <dimen name="padding_bettwen_items">5dp</dimen>
+    <dimen name="elevation_card">10dp</dimen>
+    <dimen name="size_image_card">50dp</dimen>
+    <dimen name="size_titles_card">15dp</dimen>
+    <dimen name="size_text_card">12dp</dimen>
+    <dimen name="size_drawable_padding">10dp</dimen>
+
+</resources>
