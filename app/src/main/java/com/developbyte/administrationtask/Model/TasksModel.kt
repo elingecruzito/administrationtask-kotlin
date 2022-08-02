@@ -1,6 +1,6 @@
 package com.developbyte.administrationtask.Model
 
-class TaskModel {
+object TaskModel {
 
     var id_task = 0
     var task: String? = null
@@ -13,6 +13,7 @@ class TaskModel {
     val STATUS_IN_PROGRESS = 0
     val STATUS_COMPLETE = 1
 
+    /*
     constructor(){
 
     }
@@ -26,4 +27,5 @@ class TaskModel {
         this.date = date
         this.status = status
     }
+    */
 }
