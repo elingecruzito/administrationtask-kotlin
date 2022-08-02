@@ -1,5 +1,10 @@
 package com.developbyte.administrationtask.Home
 
+import com.developbyte.administrationtask.Model.DaysMountModel
+import com.developbyte.administrationtask.Model.MonthsModel
+import com.developbyte.administrationtask.Model.TasksModel
+
+
 interface IHome {
     //Comunica de MasterBussinesController a BussinesController
     interface IHomeTransactionHandler {
@@ -16,22 +21,39 @@ interface IHome {
     //Comunica de BusinessController a ViewController
     interface IHomeRepresentationHandler {
         fun showHome(): Boolean
+        fun setDaysOfCurrentMount(daysOfCurrentMount: List<DaysMountModel?>?)
+        fun setTaskInProgress(taskInProgress: List<TasksModel?>?)
+        fun setTaskComplete(taskComplete: List<TasksModel?>?)
+        fun setMonthList(monthList: List<MonthsModel?>?)
+        fun updateStatusTaskResult(ready: Boolean)
+        fun deleteTaskResult(ready: Boolean)
     }
 
     //Comunica de Service a BusinessComtroller
     interface IHomeInformationDelegate {
-
+        fun setTaskInProgress(taskInProgress: List<TasksModel?>?)
+        fun setTaskComplete(taskComplete: List<TasksModel?>?)
+        fun updateStatusTaskResult(ready: Boolean)
+        fun deleteTaskResult(ready: Boolean)
     }
 
     //Comunica de BusinessController a Service
     interface IHomeInformationHandler{
-
+        fun getTaskInProgress(date: String?)
+        fun getTaskComplete(date: String?)
+        fun updateStatusTask(idTask: Int)
+        fun deleteTask(idTask: Int)
     }
 
     //Comunica de ViewController a Businnes
     interface IHomeRepresentationDelegate {
         fun showInfoProject()
         fun showNewProject()
-        
+        fun getDaysOfCurrentMount(mount: Int)
+        fun getTaskInProgress(date: String?)
+        fun getTaskComplete(date: String?)
+        fun getMonthsList()
+        fun updateStatusTask(idTask: Int)
+        fun deleteTask(idTask: Int)
     }
 }
