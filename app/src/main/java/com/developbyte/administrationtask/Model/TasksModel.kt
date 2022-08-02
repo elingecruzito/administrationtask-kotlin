@@ -1,6 +1,6 @@
 package com.developbyte.administrationtask.Model
 
-object TaskModel {
+object TasksModel {
 
     var id_task = 0
     var task: String? = null
