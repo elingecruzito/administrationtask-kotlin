@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
 import com.developbyte.administrationtask.Abstract.AbstractViewController
+import com.developbyte.administrationtask.Model.ProjectModel
+import com.developbyte.administrationtask.Model.TasksModel
 import com.developbyte.administrationtask.R
 
 class InfoProjectViewController : AbstractViewController(), IInfoProject.IInfoProjectRepresentationHandler {
@@ -33,5 +35,23 @@ class InfoProjectViewController : AbstractViewController(), IInfoProject.IInfoPr
 
     override fun showInfoProject() {
         masterViewController?.presetFragment(tag)
+    }
+
+    override fun setDataProject(project: ProjectModel?) {
+    }
+
+    override fun setAllProgressTask(progressTask: List<TasksModel?>?) {
+    }
+
+    override fun setAllCompleteTask(completeTask: List<TasksModel?>?) {
+    }
+
+    override fun setInsertTask(task: TasksModel?) {
+    }
+
+    override fun updateStatusTaskResult(ready: Boolean) {
+    }
+
+    override fun deleteTask(ready: Boolean) {
     }
 }
