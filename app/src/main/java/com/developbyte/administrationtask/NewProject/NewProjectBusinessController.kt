@@ -1,6 +1,7 @@
 package com.developbyte.administrationtask.NewProject
 
 import com.developbyte.administrationtask.Abstract.AbstractBusinessController
+import com.developbyte.administrationtask.Model.TasksModel
 
 class NewProjectBusinessController: AbstractBusinessController(), INewProject.INewProjectRepresentationDelegate,
     INewProject.INewProjectTransactionHandler,
@@ -14,6 +15,9 @@ class NewProjectBusinessController: AbstractBusinessController(), INewProject.IN
         representationHandler?.showNewProject()
     }
 
-    
+    override fun createNewProject(name: String?, tasksModelList: List<TasksModel?>?) {
+        informationHandler?.createNewProject(name, tasksModelList);
+    }
+
 
 }
