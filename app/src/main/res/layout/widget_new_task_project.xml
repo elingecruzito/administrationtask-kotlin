@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="@dimen/padding_view">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_view">
+        app:cardCornerRadius="@dimen/radius_card">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:background="@color/white"
             android:padding="@dimen/padding_view">
 
             <LinearLayout
@@ -26,6 +26,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    style="@style/ThemeTextInformation"
                     android:text="Task name"/>
 
                 <RelativeLayout
@@ -53,6 +54,7 @@
                     android:id="@+id/txt_date_new_task_project"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    style="@style/ThemeTextInformation"
                     android:layout_weight="1"
                     android:text="dd/mm/yyyy"/>
 
@@ -62,6 +64,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textAlignment="textEnd"
+                    style="@style/ThemeTextInformation"
                     android:text="00:00 am"/>
 
             </LinearLayout>
