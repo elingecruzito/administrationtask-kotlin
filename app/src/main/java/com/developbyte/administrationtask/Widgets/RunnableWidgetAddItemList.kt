@@ -11,11 +11,7 @@ class RunnableWidgetAddItemList: Runnable {
     var hour: String? = null
 
     override fun run() {
-        val taskModel: TasksModel? = null
-        taskModel!!.task = name
-        taskModel!!.date = date
-        taskModel!!.hour = hour
-        listNewTaskAdapter!!.setTasksModel( taskModel )
+        listNewTaskAdapter!!.setTasksModel( TasksModel(name!!, hour!!, date!!) )
     }
 
 }

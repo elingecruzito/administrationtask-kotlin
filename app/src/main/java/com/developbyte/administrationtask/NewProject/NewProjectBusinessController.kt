@@ -19,5 +19,9 @@ class NewProjectBusinessController: AbstractBusinessController(), INewProject.IN
         informationHandler?.createNewProject(name, tasksModelList);
     }
 
+    override fun createNewProjectReady(ready: Boolean) {
+        representationHandler!!.createNewProject(ready)
+    }
+
 
 }

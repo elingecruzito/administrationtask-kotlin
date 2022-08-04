@@ -34,6 +34,7 @@ class WidgetCreateNewTask {
     constructor(activity: Activity, utilerias: Utilerias){
         this.activity = activity
         this.utilerias = utilerias
+        init()
     }
 
     fun init(){
@@ -49,13 +50,13 @@ class WidgetCreateNewTask {
         txtDateNewHour = viewAddNewTask!!.findViewById(R.id.txt_date_new_hour)
         timePickerDialog = utilerias!!.getTimePickerDialog(activity, txtDateNewHour!!)
         btnModalClock = viewAddNewTask!!.findViewById(R.id.btn_modal_clock)
-        btnModalClock!!.setOnClickListener(View.OnClickListener { timePickerDialog!!.show() })
+        btnModalClock!!.setOnClickListener{ timePickerDialog!!.show() }
 
         btnCancelNewTask = viewAddNewTask!!.findViewById(R.id.btn_cancel_new_task)
-        btnCancelNewTask!!.setOnClickListener(View.OnClickListener {
+        btnCancelNewTask!!.setOnClickListener{
             clearModalNewTask()
             alertDialog!!.dismiss()
-        })
+        }
 
         btnCreateNewTask = viewAddNewTask!!.findViewById(R.id.btn_create_new_task)
         //alertDialog = alertDialogAddNewTask.setView(viewAddNewTask).create();
@@ -91,10 +92,11 @@ class WidgetCreateNewTask {
     ) {
         btnCreateNewTask!!.setOnClickListener {
             addItem.representationDelegate = representationDelegate
-            var tasksModel: TasksModel? = null
-            tasksModel?.task = txtNameNewTask!!.text.toString()
-            tasksModel?.hour = txtDateNewHour!!.text.toString()
-            tasksModel?.date = txtDateNewTask!!.text.toString()
+            var tasksModel = TasksModel(
+                txtNameNewTask!!.text.toString(),
+                txtDateNewHour!!.text.toString(),
+                txtDateNewTask!!.text.toString()
+            )
             tasksModel?.id_project = id_project
             addItem.tasksModel = tasksModel
             addItem.run()

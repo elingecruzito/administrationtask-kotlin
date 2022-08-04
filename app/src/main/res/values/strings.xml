@@ -20,6 +20,7 @@
     <string name="btn_create_project">Create project</string>
     <string name="msg_confirmation_create_project">Are you sure to create project?</string>
     <string name="msg_error_create_project">Error to create project!</string>
+    <string name="msg_confirmation_ready_create_project">Project created!</string>
     <string name="btn_confirmation_positive">Ok</string>
     <string name="btn_confirmation_negative">Cancel</string>
 

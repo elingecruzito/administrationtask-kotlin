@@ -10,17 +10,21 @@ import com.developbyte.administrationtask.InfoProject.InfoProjectViewController
 import com.developbyte.administrationtask.NewProject.NewProjectBusinessController
 import com.developbyte.administrationtask.NewProject.NewProjectService
 import com.developbyte.administrationtask.NewProject.NewProjectViewController
+import com.developbyte.administrationtask.Widgets.Utilerias
 
 
 class InjectionManager {
 
     private val masterBusinessController = MasterBusinessController()
+    private val utilerias = Utilerias()
 
     fun startHome(homeMasterViewController : HomeMasterViewController){
 
         val infoprojectViewController = InfoProjectViewController()
         val infoprojectBusinessController = InfoProjectBusinessController()
         val infoprojectService = InfoProjectService()
+
+        utilerias.setActivity(homeMasterViewController)
 
         infoprojectBusinessController.representationHandler = infoprojectViewController
         infoprojectBusinessController.transactionDelegate = masterBusinessController
@@ -31,6 +35,7 @@ class InjectionManager {
         infoprojectViewController.masterViewController = homeMasterViewController
 
         infoprojectService.informationDelegate = infoprojectBusinessController
+        infoprojectService.context = homeMasterViewController
 
         homeMasterViewController.addFragment(infoprojectViewController)
         masterBusinessController.infoprojectController = infoprojectBusinessController
@@ -48,8 +53,10 @@ class InjectionManager {
         newprojectViewController.tag = homeMasterViewController.NEWPROJECT_CONTROLLER
         newprojectViewController.representationDelegate = newprojectBusinessController
         newprojectViewController.masterViewController = homeMasterViewController
+        newprojectViewController.utilerias = utilerias
 
         newprojectService.informationDelegate = newprojectBusinessController
+        newprojectService.context = homeMasterViewController
 
         homeMasterViewController.addFragment(newprojectViewController)
         masterBusinessController.newprojectController = newprojectBusinessController
@@ -69,6 +76,7 @@ class InjectionManager {
         homeViewController.masterViewController = homeMasterViewController
 
         homeService.informationDelegate = homeBusinessController
+        homeService.context = homeMasterViewController
 
         homeMasterViewController.addFragment(homeViewController)
         masterBusinessController.homeController = homeBusinessController

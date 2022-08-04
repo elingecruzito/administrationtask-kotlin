@@ -101,6 +101,16 @@ class Utilerias {
         alertDialog!!.show()
     }
 
+    fun showMessageConfirmation(message: Int){
+        imgIconTypeModal!!.background = activity!!.getDrawable(R.mipmap.icon_info_96)
+        lblMessageModal!!.text = activity!!.getString(message)
+        btnCancelModal!!.visibility = View.GONE
+        btnConfirmationModal!!.setOnClickListener {
+            alertDialog!!.dismiss()
+        }
+        alertDialog!!.show()
+    }
+
     fun randomString(): String? {
         val DATA = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         val RANDOM = Random()

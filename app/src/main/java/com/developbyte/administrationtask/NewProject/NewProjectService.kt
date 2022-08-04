@@ -33,13 +33,14 @@ class NewProjectService : AbstractService(), INewProject.INewProjectInformationH
                 parameters.put(TaskEntry.COLUMN_NAME_TASK, tasksModel?.task)
                 parameters.put(TaskEntry.COLUMN_NAME_DATE, tasksModel?.date)
                 parameters.put(TaskEntry.COLUMN_NAME_HOUR, tasksModel?.hour)
-                parameters.put(TaskEntry.COLUMN_NAME_STATUS, TasksModel.STATUS_IN_PROGRESS)
+                parameters.put(TaskEntry.COLUMN_NAME_STATUS, TaskEntry.STATUS_IN_PROGRESS)
                 parameters.put(TaskEntry.COLUMN_NAME_ID_PROJECT, idRow!!.toInt())
                 db?.insert(TaskEntry.TABLE_NAME, null, parameters)
                 parameters.clear()
             }
             db?.close()
             dbHelper!!.close()
+            informationDelegate!!.createNewProjectReady(idRow != null)
         }
     }
 

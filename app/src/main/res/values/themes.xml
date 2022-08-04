@@ -40,7 +40,7 @@
     </style>
 
     <style name="ThemeTextInformation">
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/color_text</item>
     </style>
 
     <style name="ThemeLabelFields">

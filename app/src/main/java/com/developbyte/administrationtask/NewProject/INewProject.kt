@@ -17,11 +17,12 @@ interface INewProject {
     //Comunica de BusinessController a ViewController
     interface INewProjectRepresentationHandler {
         fun showNewProject()
+        fun createNewProject(ready: Boolean)
     }
 
     //Comunica de Service a BusinessComtroller
     interface INewProjectInformationDelegate {
-
+        fun createNewProjectReady(ready: Boolean)
     }
 
     //Comunica de BusinessController a Service
