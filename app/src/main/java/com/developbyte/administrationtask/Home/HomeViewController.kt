@@ -9,17 +9,23 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.developbyte.administrationtask.Abstract.AbstractViewController
 import com.developbyte.administrationtask.Adapters.ListDaysMountAdapter
 import com.developbyte.administrationtask.Adapters.ModalListMonthsAdapeter
+import com.developbyte.administrationtask.Home.Fragments.CompleteFragment
+import com.developbyte.administrationtask.Home.Fragments.ProgressFragment
 import com.developbyte.administrationtask.Model.DaysMountModel
 import com.developbyte.administrationtask.Model.MonthsModel
 import com.developbyte.administrationtask.Model.TasksModel
 import com.developbyte.administrationtask.R
+import com.developbyte.administrationtask.Widgets.Utilerias
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import java.text.DateFormatSymbols
 import java.time.YearMonth
 import java.util.*
@@ -27,6 +33,7 @@ import java.util.*
 class HomeViewController : AbstractViewController(), IHome.IHomeRepresentationHandler {
 
     var representationDelegate: IHome.IHomeRepresentationDelegate? = null
+    var utilerias:Utilerias ? = null
 
     private var txtDayToday: AppCompatTextView? = null
     private var btnCalendar: AppCompatButton? = null
@@ -69,12 +76,38 @@ class HomeViewController : AbstractViewController(), IHome.IHomeRepresentationHa
         listDaysMountAdapter = ListDaysMountAdapter(requireContext(), representationDelegate!!)
         lstDaysMount!!.adapter = listDaysMountAdapter
 
+        txtTaskProgress = viewc!!.findViewById(R.id.txt_task_progress)
+        txtTaskComplete = viewc!!.findViewById(R.id.txt_task_complete)
+        tbTask = viewc!!.findViewById(R.id.tb_task)
+        tbTask!!.addOnTabSelectedListener(object : OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                when(tab.position){
+                    0 -> representationDelegate!!.getTaskInProgress(dateSelected)
+                    1 -> representationDelegate!!.getTaskComplete(dateSelected)
+                }
+            }
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+
+            }
+            override fun onTabReselected(tab: TabLayout.Tab) {
+
+            }
+        })
+        reloadData()
         btnNewProject = viewc?.findViewById(R.id.btn_new_project)
         btnNewProject?.setOnClickListener { representationDelegate?.showNewProject() }
 
         representationDelegate!!.getDaysOfCurrentMount(YearMonth.now().monthValue)
 
         return viewc
+    }
+
+    private fun setFragmentTabTask(fragmentTask:Fragment){
+        activity?.supportFragmentManager!!
+                .beginTransaction()
+                .replace(R.id.fm_tab_task, fragmentTask)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit()
     }
 
     override fun resume() {
@@ -117,9 +150,14 @@ class HomeViewController : AbstractViewController(), IHome.IHomeRepresentationHa
     }
 
     override fun setTaskInProgress(taskInProgress: MutableList<TasksModel>) {
+        txtTaskProgress!!.text = taskInProgress.size.toString() + " " + resources.getString(R.string.lbl_card_name_task)
+        setFragmentTabTask(ProgressFragment(taskInProgress, representationDelegate, utilerias))
+
     }
 
     override fun setTaskComplete(taskComplete: MutableList<TasksModel>) {
+        txtTaskComplete!!.text = taskComplete.size.toString() + " " + resources.getString(R.string.lbl_card_name_task)
+        setFragmentTabTask(CompleteFragment(taskComplete, representationDelegate, utilerias))
     }
 
     override fun setMonthList(monthList: MutableList<MonthsModel>) {

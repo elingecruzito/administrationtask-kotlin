@@ -30,7 +30,6 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/lst_months_modal"
                 android:layout_width="match_parent"
-                android:background="@color/white"
                 android:layout_height="250dp" />
 
         </androidx.cardview.widget.CardView>

@@ -74,6 +74,7 @@ class InjectionManager {
         homeViewController.tag = homeMasterViewController.HOME_CONTROLLER
         homeViewController.representationDelegate = homeBusinessController
         homeViewController.masterViewController = homeMasterViewController
+        homeViewController.utilerias = utilerias
 
         homeService.informationDelegate = homeBusinessController
         homeService.context = homeMasterViewController

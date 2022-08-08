@@ -8,16 +8,17 @@ import com.developbyte.administrationtask.DataBase.Entrys.ProjectEntry
 import com.developbyte.administrationtask.DataBase.Entrys.TaskAdministrationDBHelper
 import com.developbyte.administrationtask.DataBase.Entrys.TaskEntry
 import com.developbyte.administrationtask.Model.TasksModel
+import java.util.*
 
 abstract class AbstractService {
 
-    val modelList: MutableList<TasksModel>? = null
+    val modelList: MutableList<TasksModel> = ArrayList()
     var values: ContentValues? = null
     var countUpdate: Int? = 0
     var countDeletes: Int? = 0
 
     fun initListModel(){
-        if(!modelList!!.isEmpty()){
+        if(modelList!!.size > 0){
             modelList.clear()
         }
     }
@@ -36,7 +37,7 @@ abstract class AbstractService {
         val db = dbHelper.readableDatabase
         val cursor = db.rawQuery(query, selectionArgs)
         cursor.moveToFirst()
-        if(cursor.columnCount > 0){
+        if(cursor.count > 0){
             initListModel()
             do {
                 var tasksModel =  TasksModel(
@@ -50,10 +51,10 @@ abstract class AbstractService {
                 tasksModel?.status = cursor.getInt(cursor.getColumnIndex(TaskEntry.COLUMN_NAME_STATUS))
                 modelList?.add(tasksModel!!)
             }while (cursor.moveToNext())
-            cursor.close()
-            db.close()
-            dbHelper.close()
         }
+        cursor.close()
+        db.close()
+        dbHelper.close()
     }
 
     fun createTask(taskModel: TasksModel, context: Context): TasksModel {

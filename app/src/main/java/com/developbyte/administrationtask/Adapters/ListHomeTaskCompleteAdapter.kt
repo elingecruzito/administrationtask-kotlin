@@ -15,11 +15,11 @@ import com.developbyte.administrationtask.Model.TasksModel
 
 class ListHomeTaskCompleteAdapter: RecyclerView.Adapter<ListHomeTaskCompleteAdapter.ViewHolder> {
 
-    private var tasksModelList: List<TasksModel>? = null
+    private var tasksModelList: MutableList<TasksModel>? = null
     private var context: Context? = null
     private var representationDelegate: IHomeRepresentationDelegate? = null
 
-    constructor(tasksModelList: List<TasksModel>?, context: Context?, representationDelegate: IHomeRepresentationDelegate?) {
+    constructor(tasksModelList: MutableList<TasksModel>, context: Context?, representationDelegate: IHomeRepresentationDelegate?) {
         this.tasksModelList = tasksModelList
         this.context = context
         this.representationDelegate = representationDelegate
@@ -35,7 +35,7 @@ class ListHomeTaskCompleteAdapter: RecyclerView.Adapter<ListHomeTaskCompleteAdap
         holder.lyItemTask.setOnClickListener{
             //representationDelegate!!.showInfoProject(tasksModelList!![position].id_project)
         }
-        holder.iconStatusTask.setBackground(context!!.resources.getDrawable(R.mipmap.check))
+        holder.iconStatusTask.background = context!!.resources.getDrawable(R.mipmap.check)
         holder.txtNameTask.text = tasksModelList!![position].task
         holder.txtNameProject.text = tasksModelList!![position].project
         holder.txtDateTask.text = tasksModelList!![position].hour
@@ -47,18 +47,11 @@ class ListHomeTaskCompleteAdapter: RecyclerView.Adapter<ListHomeTaskCompleteAdap
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val lyItemTask: RelativeLayout
-        val iconStatusTask: ImageView
-        val txtNameTask: AppCompatTextView
-        val txtDateTask: AppCompatTextView
-        val txtNameProject: AppCompatTextView
+        val lyItemTask: RelativeLayout = itemView.findViewById(R.id.ly_item_task)
+        val iconStatusTask: ImageView = itemView.findViewById(R.id.icon_status_task)
+        val txtNameTask: AppCompatTextView = itemView.findViewById(R.id.txt_name_task)
+        val txtDateTask: AppCompatTextView = itemView.findViewById(R.id.txt_date_task)
+        val txtNameProject: AppCompatTextView = itemView.findViewById(R.id.txt_name_project)
 
-        init {
-            lyItemTask = itemView.findViewById(R.id.ly_item_task)
-            iconStatusTask = itemView.findViewById(R.id.icon_status_task)
-            txtNameTask = itemView.findViewById(R.id.txt_name_task)
-            txtDateTask = itemView.findViewById(R.id.txt_date_task)
-            txtNameProject = itemView.findViewById(R.id.txt_name_project)
-        }
     }
 }
