@@ -89,10 +89,12 @@ class HomeBusinessController: AbstractBusinessController(), IHome.IHomeRepresent
     @RequiresApi(api = Build.VERSION_CODES.O)
     override fun getMonthsList() {
         monthsModelList?.clear()
-        for (i in 0..DateFormatSymbols.getInstance().getMonths().size) {
-            var monthsModel: MonthsModel? = null
-            monthsModel?.month = DateFormatSymbols.getInstance().months[i]
-            monthsModel?.isActive = YearMonth.now().monthValue - 1 === i
+        val sizeMonths = DateFormatSymbols.getInstance().months.size - 1
+        for (i in 0..sizeMonths) {
+            monthsModelList!!.add(MonthsModel(
+                    DateFormatSymbols.getInstance().months[i],
+                    YearMonth.now().monthValue - 1 === i
+            ))
         }
         representationHandler!!.setMonthList(monthsModelList!!)
     }

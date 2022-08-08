@@ -62,6 +62,7 @@ class HomeViewController : AbstractViewController(), IHome.IHomeRepresentationHa
 
         btnCalendar = viewc!!.findViewById(R.id.btn_select_month);
         btnCalendar!!.text = YearMonth.now().month.name
+        btnCalendar!!.setOnClickListener { showListMonths() }
 
         lstDaysMount = viewc!!.findViewById(R.id.lst_days_mount)
         lstDaysMount!!.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -122,11 +123,31 @@ class HomeViewController : AbstractViewController(), IHome.IHomeRepresentationHa
     }
 
     override fun setMonthList(monthList: MutableList<MonthsModel>) {
+        lstModalMonths = viewDialogMonths!!.findViewById(R.id.lst_months_modal)
+        lstModalMonths!!.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        listMonthsAdapeter = ModalListMonthsAdapeter(monthList, requireContext())
+        lstModalMonths!!.adapter = listMonthsAdapeter
+        lstModalMonths!!.scrollToPosition(listMonthsAdapeter!!.indexSelected - 2)
     }
 
     override fun updateStatusTaskResult(ready: Boolean) {
     }
 
     override fun deleteTaskResult(ready: Boolean) {
+    }
+
+    private fun showListMonths(){
+        if(builderMonth == null){
+            builderMonth = AlertDialog.Builder(requireContext())
+            viewDialogMonths = activity?.layoutInflater!!.inflate(R.layout.widget_modal_list_month, null)
+            representationDelegate!!.getMonthsList()
+            btnConfirmationModalMonths = viewDialogMonths!!.findViewById(R.id.btn_confirmation_modal_months)
+            btnConfirmationModalMonths!!.setOnClickListener {
+                representationDelegate!!.getDaysOfCurrentMount(listMonthsAdapeter!!.indexSelected)
+                alertDialogMonths!!.dismiss()
+            }
+            alertDialogMonths = builderMonth!!.setView(viewDialogMonths).create()
+        }
+        alertDialogMonths!!.show()
     }
 }

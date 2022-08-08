@@ -15,14 +15,16 @@ import com.developbyte.administrationtask.R
 
 class ModalListMonthsAdapeter: RecyclerView.Adapter<ModalListMonthsAdapeter.ViewHolder>{
 
-    private var modelList: List<MonthsModel>? = null
+    private var modelList: MutableList<MonthsModel>? = null
     var context: Context? = null
     var indexSelected = 0
+    var sizeList:Int = 0
 
-    constructor(modelList: List<MonthsModel>, context: Context?) {
+    constructor(modelList: MutableList<MonthsModel>, context: Context?) {
         this.modelList = modelList
         this.context = context
-        for (i in 0..modelList.size) {
+        sizeList = modelList.size - 1
+        for (i in 0..sizeList) {
             if (modelList[i].isActive) {
                 indexSelected = i
             }
@@ -55,7 +57,7 @@ class ModalListMonthsAdapeter: RecyclerView.Adapter<ModalListMonthsAdapeter.View
     }
 
     private fun setSelectedOption(position: Int) {
-        for (i in 0..modelList!!.size) {
+        for (i in 0..sizeList) {
             if (i == position) {
                 indexSelected = position + 1
                 modelList!![i].isActive = true
@@ -71,13 +73,9 @@ class ModalListMonthsAdapeter: RecyclerView.Adapter<ModalListMonthsAdapeter.View
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val lyModalMonthYear: RelativeLayout
-        val lblValueItemModalMonths: AppCompatTextView
+        val lyModalMonthYear: RelativeLayout = itemView.findViewById(R.id.ly_modal_month_year)
+        val lblValueItemModalMonths: AppCompatTextView = itemView.findViewById(R.id.lbl_value_item_modal_months)
 
-        init {
-            lyModalMonthYear = itemView.findViewById(R.id.ly_modal_month_year)
-            lblValueItemModalMonths = itemView.findViewById(R.id.lbl_value_item_modal_months)
-        }
     }
 
 }
