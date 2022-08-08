@@ -54,7 +54,7 @@ class InfoProjectService : AbstractService(), IInfoProject.IInfoProjectInformati
         loadData(
                 RelationProjectTask.QUERY_RELATION
                         + " AND " + TaskEntry.COLUMN_NAME_STATUS + " = ?"
-                        + " AND " + TaskEntry.TABLE_NAME + "." + TaskEntry.COLUMN_NAME_ID_PROJECT + " = ? ORDER BY " + TaskEntry.COLUMN_NAME_DATE + " DESC", arrayOf(String.valueOf(TasksModel.STATUS_IN_PROGRESS), String.valueOf(id)),
+                        + " AND " + TaskEntry.TABLE_NAME + "." + TaskEntry.COLUMN_NAME_ID_PROJECT + " = ? ORDER BY " + TaskEntry.COLUMN_NAME_DATE + " DESC", arrayOf(String.valueOf(TaskEntry.STATUS_IN_PROGRESS), String.valueOf(id)),
                 (context)!!
         )
         informationDelegate?.setAllProgressTask(modelList)
@@ -64,7 +64,7 @@ class InfoProjectService : AbstractService(), IInfoProject.IInfoProjectInformati
         loadData(
                 RelationProjectTask.QUERY_RELATION
                         + " AND " + TaskEntry.COLUMN_NAME_STATUS + " = ?"
-                        + " AND " + TaskEntry.TABLE_NAME + "." + TaskEntry.COLUMN_NAME_ID_PROJECT + " = ? ORDER BY " + TaskEntry.COLUMN_NAME_DATE + " DESC", arrayOf(String.valueOf(TasksModel.STATUS_COMPLETE), String.valueOf(id)),
+                        + " AND " + TaskEntry.TABLE_NAME + "." + TaskEntry.COLUMN_NAME_ID_PROJECT + " = ? ORDER BY " + TaskEntry.COLUMN_NAME_DATE + " DESC", arrayOf(String.valueOf(TaskEntry.STATUS_COMPLETE), String.valueOf(id)),
                 (context)!!
         )
         informationDelegate?.setAllCompleteTask(modelList)

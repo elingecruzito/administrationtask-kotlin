@@ -180,7 +180,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabSelectedTextColor="@color/blue_background"
-            app:tabTextColor="@color/black"
+            app:tabTextColor="@color/color_text"
             app:tabIndicatorColor="@color/blue_background">
 
             <com.google.android.material.tabs.TabItem

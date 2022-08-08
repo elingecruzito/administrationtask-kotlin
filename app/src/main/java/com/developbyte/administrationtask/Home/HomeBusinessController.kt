@@ -24,13 +24,13 @@ class HomeBusinessController: AbstractBusinessController(), IHome.IHomeRepresent
     var transactionDelegate: IHome.IHomeTransactionDelegate? = null
     var informationHandler: IHome.IHomeInformationHandler? = null
 
-    private var daysMountModels: MutableList<DaysMountModel>? = null
+    private var daysMountModels: MutableList<DaysMountModel>? = ArrayList()
     private var dateFormat: DateFormat? = null
     private var format: SimpleDateFormat? = null
     private var date: Date? = null
-    private var day_text: String? = null
+    private var day_text: String = ""
 
-    private var monthsModelList: MutableList<MonthsModel>? = null
+    private var monthsModelList: MutableList<MonthsModel>? = ArrayList()
 
     override fun startHome() {
         representationHandler?.showHome()
@@ -49,28 +49,33 @@ class HomeBusinessController: AbstractBusinessController(), IHome.IHomeRepresent
     @SuppressLint("LongLogTag")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun getDaysOfCurrentMount(mount: Int) {
+
+        val dayOfMonth:Int = Calendar.getInstance()[Calendar.DAY_OF_MONTH]
+        val actualMonth:Int = Calendar.getInstance()[Calendar.MONTH] + 1
+        val actualYear:Int = Calendar.getInstance()[Calendar.YEAR]
+        val longDays = YearMonth.of(Calendar.getInstance()[Calendar.YEAR], mount).lengthOfMonth()
         daysMountModels?.clear()
-        for (i in 1..YearMonth.of(Calendar.getInstance()[Calendar.YEAR], mount).lengthOfMonth()) {
+
+        for (i in 1..longDays) {
             try {
-                date = format?.parse(i.toString() + "/" + mount + "/" + Calendar.getInstance()[Calendar.YEAR])
+                date = format?.parse("$i/$mount/$actualYear")
                 day_text = dateFormat?.format(date)?.subSequence(0, 3).toString()
             } catch (e: ParseException) {
                 day_text = ""
                 Log.e("HomeBusinessController -> ", e.message.toString())
             }
-            var daysMountModel: DaysMountModel? = null
-            daysMountModel?.day = i
-            daysMountModel?.day_text = day_text
-            daysMountModel?.isToday = Calendar.getInstance()[Calendar.DAY_OF_MONTH] === i &&
-                    Calendar.getInstance()[Calendar.MONTH] + 1 === mount
-            daysMountModels?.add(daysMountModel!!)
+            daysMountModels?.add(DaysMountModel(
+                    i,
+                    day_text,
+                    dayOfMonth === i && actualMonth === mount
+            ))
         }
-        if (Calendar.getInstance()[Calendar.MONTH] + 1 !== mount) {
+        if (actualMonth !== mount) {
             daysMountModels?.get(0)?.selected = true
         } else {
-            daysMountModels?.get(Calendar.getInstance()[Calendar.DAY_OF_MONTH] - 1)?.selected = true
+            daysMountModels?.get(dayOfMonth - 1)?.selected = true
         }
-        representationHandler!!.setDaysOfCurrentMount(daysMountModels)
+        representationHandler!!.setDaysOfCurrentMount(daysMountModels!!)
     }
 
     override fun getTaskInProgress(date: String?) {
@@ -89,7 +94,7 @@ class HomeBusinessController: AbstractBusinessController(), IHome.IHomeRepresent
             monthsModel?.month = DateFormatSymbols.getInstance().months[i]
             monthsModel?.isActive = YearMonth.now().monthValue - 1 === i
         }
-        representationHandler!!.setMonthList(monthsModelList)
+        representationHandler!!.setMonthList(monthsModelList!!)
     }
 
     override fun updateStatusTask(idTask: Int) {
@@ -101,12 +106,12 @@ class HomeBusinessController: AbstractBusinessController(), IHome.IHomeRepresent
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    override fun setTaskInProgress(taskInProgress: List<TasksModel?>?) {
-        representationHandler!!.setTaskInProgress(taskInProgress)
+    override fun setTaskInProgress(taskInProgress: MutableList<TasksModel>) {
+        representationHandler!!.setTaskInProgress(taskInProgress!!)
     }
 
-    override fun setTaskComplete(taskComplete: List<TasksModel?>?) {
-        representationHandler!!.setTaskComplete(taskComplete)
+    override fun setTaskComplete(taskComplete: MutableList<TasksModel>) {
+        representationHandler!!.setTaskComplete(taskComplete!!)
     }
 
     override fun updateStatusTaskResult(ready: Boolean) {

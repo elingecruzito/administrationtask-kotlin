@@ -15,7 +15,7 @@ import com.developbyte.administrationtask.R
 
 class ListDaysMountAdapter : RecyclerView.Adapter<ListDaysMountAdapter.ViewHolder> {
 
-    private var daysMountModelList: List<DaysMountModel>? = null
+    private var daysMountModelList: MutableList<DaysMountModel>? = null
     private var context: Context? = null
     var indexToday = -1
     private var month = 0
@@ -26,13 +26,14 @@ class ListDaysMountAdapter : RecyclerView.Adapter<ListDaysMountAdapter.ViewHolde
         this.representationDelegate = representationDelegate
     }
 
-    fun setDaysMountModel(daysMountModelList: List<DaysMountModel>, month: Int){
+    fun setDaysMountModel(daysMountModelList: MutableList<DaysMountModel>, month: Int){
         this.daysMountModelList = daysMountModelList
         this.month = month
         if( indexToday < 0 ){
             for ( i in 0..daysMountModelList.size){
                 if(daysMountModelList[i].isToday){
-                    indexToday = 1
+                    indexToday = i
+                    break
                 }
             }
         }
@@ -67,7 +68,8 @@ class ListDaysMountAdapter : RecyclerView.Adapter<ListDaysMountAdapter.ViewHolde
         holder.cardDayMonth!!.setOnClickListener {
             indexToday = position
             representationDelegate!!.getDaysOfCurrentMount(month)
-            for (i in 0..daysMountModelList!!.size) {
+            val sizeList = daysMountModelList!!.size - 1
+            for (i in 0..sizeList) {
                 daysMountModelList!![i].selected = false
                 if (i == position) {
                     daysMountModelList!![i].selected = true
@@ -83,15 +85,10 @@ class ListDaysMountAdapter : RecyclerView.Adapter<ListDaysMountAdapter.ViewHolde
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val cardDayMonth: CardView
-        val txtDayMount: AppCompatTextView
-        val txtDayTextMount: AppCompatTextView
+        val cardDayMonth: CardView = itemView.findViewById(R.id.card_day_month)
+        val txtDayMount: AppCompatTextView = itemView.findViewById(R.id.txt_day_mount)
+        val txtDayTextMount: AppCompatTextView = itemView.findViewById(R.id.txt_day_text_mount)
 
-        init{
-            cardDayMonth = itemView.findViewById(R.id.card_day_month)
-            txtDayMount = itemView.findViewById(R.id.txt_day_mount)
-            txtDayTextMount = itemView.findViewById(R.id.txt_day_text_mount)
-        }
     }
 
 }

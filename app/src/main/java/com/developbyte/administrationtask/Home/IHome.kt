@@ -21,18 +21,18 @@ interface IHome {
     //Comunica de BusinessController a ViewController
     interface IHomeRepresentationHandler {
         fun showHome(): Boolean
-        fun setDaysOfCurrentMount(daysOfCurrentMount: List<DaysMountModel?>?)
-        fun setTaskInProgress(taskInProgress: List<TasksModel?>?)
-        fun setTaskComplete(taskComplete: List<TasksModel?>?)
-        fun setMonthList(monthList: List<MonthsModel?>?)
+        fun setDaysOfCurrentMount(daysOfCurrentMount: MutableList<DaysMountModel>)
+        fun setTaskInProgress(taskInProgress: MutableList<TasksModel>)
+        fun setTaskComplete(taskComplete: MutableList<TasksModel>)
+        fun setMonthList(monthList: MutableList<MonthsModel>)
         fun updateStatusTaskResult(ready: Boolean)
         fun deleteTaskResult(ready: Boolean)
     }
 
     //Comunica de Service a BusinessComtroller
     interface IHomeInformationDelegate {
-        fun setTaskInProgress(taskInProgress: List<TasksModel?>?)
-        fun setTaskComplete(taskComplete: List<TasksModel?>?)
+        fun setTaskInProgress(taskInProgress: MutableList<TasksModel>)
+        fun setTaskComplete(taskComplete: MutableList<TasksModel>)
         fun updateStatusTaskResult(ready: Boolean)
         fun deleteTaskResult(ready: Boolean)
     }

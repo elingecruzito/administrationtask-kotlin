@@ -34,7 +34,7 @@ class ListInfoTaskCompleteSwiper: ItemTouchHelper.Callback{
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
         if (direction == ItemTouchHelper.LEFT) {
-            representationDelegate!!.deleteTask(tasksModelList!![viewHolder.position].id_task)
+//            representationDelegate!!.deleteTask(tasksModelList!![viewHolder.position].id_task)
         }
     }
 

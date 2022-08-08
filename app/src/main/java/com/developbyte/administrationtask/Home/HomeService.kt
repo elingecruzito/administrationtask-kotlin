@@ -18,22 +18,22 @@ class HomeService : AbstractService(), IHome.IHomeInformationHandler {
 
         loadData(
                 RelationProjectTask.QUERY_RELATION + " AND " + TaskEntry.COLUMN_NAME_STATUS + " = ?" + " AND " + TaskEntry.COLUMN_NAME_DATE + " = ?",
-                arrayOf(TasksModel.STATUS_IN_PROGRESS.toString(), date),
+                arrayOf(TaskEntry.STATUS_IN_PROGRESS.toString(), date),
                 context!!
         )
 
-        informationDelegate?.setTaskInProgress(modelList)
+        informationDelegate?.setTaskInProgress(modelList!!)
     }
 
     override fun getTaskComplete(date: String?) {
         loadData(
                 RelationProjectTask.QUERY_RELATION + " AND " + TaskEntry.COLUMN_NAME_STATUS + " = ?" + " AND " + TaskEntry.COLUMN_NAME_DATE + " = ?",
-                arrayOf(TasksModel.STATUS_COMPLETE.toString(), date),
+                arrayOf(TaskEntry.STATUS_COMPLETE.toString(), date),
                 context!!
         )
 
 
-        informationDelegate?.setTaskComplete(modelList)
+        informationDelegate?.setTaskComplete(modelList!!)
     }
 
     override fun updateStatusTask(idTask: Int) {

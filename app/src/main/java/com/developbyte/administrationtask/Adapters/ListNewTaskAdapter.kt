@@ -8,11 +8,12 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.developbyte.administrationtask.Model.TasksModel
 import com.developbyte.administrationtask.R
+import java.util.*
 
 
 class ListNewTaskAdapter: RecyclerView.Adapter<ListNewTaskAdapter.ViewHolder>(){
 
-    private var listTasksModels: MutableList<TasksModel>? = null
+    private var listTasksModels: MutableList<TasksModel> = ArrayList()
 
     fun setTasksModel(tasksModel: TasksModel) {
         listTasksModels!!.add(tasksModel)
