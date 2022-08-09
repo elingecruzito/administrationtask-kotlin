@@ -12,11 +12,11 @@ import com.developbyte.administrationtask.Widgets.Utilerias
 class ListInfoTaskCompleteSwiper: ItemTouchHelper.Callback{
 
     private var context: Context? = null
-    private var tasksModelList: List<TasksModel>? = null
+    private var tasksModelList: MutableList<TasksModel>? = null
     private var representationDelegate: IInfoProjectRepresentationDelegate? = null
     private var utilerias: Utilerias? = null
 
-    constructor(context: Context?, tasksModelList: List<TasksModel>?, representationDelegate: IInfoProjectRepresentationDelegate?, utilerias: Utilerias?) {
+    constructor(context: Context?, tasksModelList: MutableList<TasksModel>?, representationDelegate: IInfoProjectRepresentationDelegate?, utilerias: Utilerias?) {
         this.context = context
         this.tasksModelList = tasksModelList
         this.representationDelegate = representationDelegate
@@ -34,7 +34,7 @@ class ListInfoTaskCompleteSwiper: ItemTouchHelper.Callback{
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
         if (direction == ItemTouchHelper.LEFT) {
-//            representationDelegate!!.deleteTask(tasksModelList!![viewHolder.position].id_task)
+            representationDelegate!!.deleteTask(tasksModelList!![viewHolder.position].id_task)
         }
     }
 

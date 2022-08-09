@@ -33,11 +33,11 @@ class InfoProjectBusinessController: AbstractBusinessController(), IInfoProject.
         informationHandler!!.createNewTask(tasksModel)
     }
 
-    override fun updateStatusTask(idtask: Int) {
+    override fun updateStatusTask(idtask: Int?) {
         informationHandler!!.updateStatusTask(idtask)
     }
 
-    override fun deleteTask(idtask: Int) {
+    override fun deleteTask(idtask: Int?) {
         informationHandler!!.deleteTask(idtask)
     }
 

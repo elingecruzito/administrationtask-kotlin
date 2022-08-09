@@ -42,8 +42,8 @@ interface IInfoProject {
         fun getAllProgressTask(id: Int)
         fun getAllCompleteTask(id: Int)
         fun createNewTask(tasksModel: TasksModel?)
-        fun updateStatusTask(idtask: Int)
-        fun deleteTask(idtask: Int)
+        fun updateStatusTask(idtask: Int?)
+        fun deleteTask(idtask: Int?)
     }
 
     //Comunica de ViewController a Businnes
@@ -52,7 +52,7 @@ interface IInfoProject {
         fun getAllProgressTask(idProject: Int)
         fun getAllCompleteTask(idProject: Int)
         fun createNewTask(tasksModel: TasksModel?)
-        fun updateStatusTask(idtask: Int)
-        fun deleteTask(idtask: Int)
+        fun updateStatusTask(idtask: Int?)
+        fun deleteTask(idtask: Int?)
     }
 }

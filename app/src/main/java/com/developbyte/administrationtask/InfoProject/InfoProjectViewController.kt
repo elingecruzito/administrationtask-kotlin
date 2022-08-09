@@ -13,7 +13,7 @@ import com.developbyte.administrationtask.R
 class InfoProjectViewController : AbstractViewController(), IInfoProject.IInfoProjectRepresentationHandler {
 
     var representationDelegate: IInfoProject.IInfoProjectRepresentationDelegate? = null
-
+    var idTask:Int? = 0;
 
     override fun init(inflater: LayoutInflater?, container: ViewGroup?): View? {
         viewc = inflater?.inflate(R.layout.content_infoproject,container,false);
@@ -34,6 +34,7 @@ class InfoProjectViewController : AbstractViewController(), IInfoProject.IInfoPr
     }
 
     override fun showInfoProject(idTask:Int?) {
+        this.idTask = idTask
         masterViewController?.presetFragment(tag)
     }
 

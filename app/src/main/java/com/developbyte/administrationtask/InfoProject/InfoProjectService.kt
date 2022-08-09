@@ -74,13 +74,13 @@ class InfoProjectService : AbstractService(), IInfoProject.IInfoProjectInformati
         informationDelegate?.setInsertTask(createTask(tasksModel!!, context!!));
     }
 
-    override fun updateStatusTask(idtask: Int) {
-        updateStatusTask(idtask, context!!)
+    override fun updateStatusTask(idtask: Int?) {
+        updateStatusTask(idtask!!, context!!)
         informationDelegate?.updateStatusTaskResult(countUpdate!! > 0)
     }
 
-    override fun deleteTask(idtask: Int) {
-        deleteTask(idtask, context!!)
+    override fun deleteTask(idtask: Int?) {
+        deleteTask(idtask!!, context!!)
         informationDelegate?.deleteTask(countDeletes!! > 0)
     }
 

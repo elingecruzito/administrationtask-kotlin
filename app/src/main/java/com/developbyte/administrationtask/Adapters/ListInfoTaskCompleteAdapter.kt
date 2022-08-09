@@ -13,10 +13,10 @@ import com.developbyte.administrationtask.R
 
 class ListInfoTaskCompleteAdapter: RecyclerView.Adapter<ListInfoTaskCompleteAdapter.ViewHolder> {
 
-    var tasksModels: List<TasksModel>? = null
+    var tasksModels: MutableList<TasksModel>? = null
     var context: Context? = null
 
-    constructor(tasksModels: List<TasksModel>?, context: Context?) {
+    constructor(tasksModels: MutableList<TasksModel>?, context: Context?) {
         this.tasksModels = tasksModels
         this.context = context
     }
@@ -28,7 +28,7 @@ class ListInfoTaskCompleteAdapter: RecyclerView.Adapter<ListInfoTaskCompleteAdap
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.imgInfoTask.background = context!!.getResources().getDrawable(R.mipmap.check)
+        holder.imgInfoTask.background = context!!.resources.getDrawable(R.mipmap.check)
         holder.txtNameInfoTask.text = tasksModels!![position].task
         holder.txtDateInfoTask.text = tasksModels!![position].date
     }
@@ -38,15 +38,10 @@ class ListInfoTaskCompleteAdapter: RecyclerView.Adapter<ListInfoTaskCompleteAdap
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imgInfoTask: AppCompatImageView
-        val txtNameInfoTask: AppCompatTextView
-        val txtDateInfoTask: AppCompatTextView
+        val imgInfoTask: AppCompatImageView = itemView.findViewById(R.id.img_info_task)
+        val txtNameInfoTask: AppCompatTextView = itemView.findViewById(R.id.txt_name_info_task)
+        val txtDateInfoTask: AppCompatTextView = itemView.findViewById(R.id.txt_date_info_task)
 
-        init {
-            imgInfoTask = itemView.findViewById(R.id.img_info_task)
-            txtNameInfoTask = itemView.findViewById(R.id.txt_name_info_task)
-            txtDateInfoTask = itemView.findViewById(R.id.txt_date_info_task)
-        }
     }
 
 }

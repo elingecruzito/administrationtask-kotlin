@@ -23,8 +23,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal">
 
-            <com.anychart.anychart.AnyChartView
-                android:id="@+id/chart_project"
+            <RelativeLayout
                 android:layout_width="300dp"
                 android:layout_height="300dp"/>
 
@@ -34,6 +33,8 @@
             android:id="@+id/tb_task_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:tabSelectedTextColor="@color/blue_background"
+            app:tabTextColor="@color/color_text"
             app:tabIndicatorColor="@color/blue_background">
 
             <com.google.android.material.tabs.TabItem
