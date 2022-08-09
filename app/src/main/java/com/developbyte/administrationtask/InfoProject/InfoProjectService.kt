@@ -16,7 +16,7 @@ class InfoProjectService : AbstractService(), IInfoProject.IInfoProjectInformati
 
     var informationDelegate : IInfoProject.IInfoProjectInformationDelegate? = null
     var context: Context? = null
-    var projectModel: ProjectModel? = null
+    var projectModel:ProjectModel? = null;
 
     @SuppressLint("Range")
     override fun getDataProject(id: Int) {
@@ -37,10 +37,12 @@ class InfoProjectService : AbstractService(), IInfoProject.IInfoProjectInformati
         )
 
         cursor.moveToFirst()
-        if (cursor.getCount() > 0) {
+        if (cursor.count > 0) {
             do {
-                projectModel!!.id_project = cursor.getString(cursor.getColumnIndex(ProjectEntry.COLUMN_NAME_ID))
-                projectModel!!.project_name = cursor.getString(cursor.getColumnIndex(ProjectEntry.COLUMN_NAME_PROJECT))
+                projectModel = ProjectModel(
+                        cursor.getString(cursor.getColumnIndex(ProjectEntry.COLUMN_NAME_ID)),
+                        cursor.getString(cursor.getColumnIndex(ProjectEntry.COLUMN_NAME_PROJECT))
+                );
             } while (cursor.moveToNext())
         }
 

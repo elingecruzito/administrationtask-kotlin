@@ -45,11 +45,11 @@ class InfoProjectBusinessController: AbstractBusinessController(), IInfoProject.
         representationHandler!!.setDataProject(project)
     }
 
-    override fun setAllProgressTask(progressTask: List<TasksModel?>?) {
+    override fun setAllProgressTask(progressTask: MutableList<TasksModel>) {
         representationHandler!!.setAllProgressTask(progressTask)
     }
 
-    override fun setAllCompleteTask(completeTask: List<TasksModel?>?) {
+    override fun setAllCompleteTask(completeTask: MutableList<TasksModel>) {
         representationHandler!!.setAllCompleteTask(completeTask)
     }
 

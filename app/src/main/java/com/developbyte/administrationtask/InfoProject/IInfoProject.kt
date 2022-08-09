@@ -19,8 +19,8 @@ interface IInfoProject {
     interface IInfoProjectRepresentationHandler {
         fun showInfoProject(idTask:Int?)
         fun setDataProject(project: ProjectModel?)
-        fun setAllProgressTask(progressTask: List<TasksModel?>?)
-        fun setAllCompleteTask(completeTask: List<TasksModel?>?)
+        fun setAllProgressTask(progressTask: MutableList<TasksModel>)
+        fun setAllCompleteTask(completeTask: MutableList<TasksModel>)
         fun setInsertTask(task: TasksModel?)
         fun updateStatusTaskResult(ready: Boolean)
         fun deleteTask(ready: Boolean)
@@ -29,8 +29,8 @@ interface IInfoProject {
     //Comunica de Service a BusinessComtroller
     interface IInfoProjectInformationDelegate {
         fun setDataProject(project: ProjectModel?)
-        fun setAllProgressTask(progressTask: List<TasksModel?>?)
-        fun setAllCompleteTask(completeTask: List<TasksModel?>?)
+        fun setAllProgressTask(progressTask: MutableList<TasksModel>)
+        fun setAllCompleteTask(completeTask: MutableList<TasksModel>)
         fun setInsertTask(task: TasksModel?)
         fun updateStatusTaskResult(ready: Boolean)
         fun deleteTask(ready: Boolean)

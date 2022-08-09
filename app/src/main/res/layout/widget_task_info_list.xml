@@ -15,6 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:background="@color/white"
             android:padding="@dimen/padding_view">
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -44,6 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:textAlignment="textEnd"
+                    android:theme="@style/ThemeTextInformation"
                     android:text="dd/mm/yyyy"/>
 
             </LinearLayout>

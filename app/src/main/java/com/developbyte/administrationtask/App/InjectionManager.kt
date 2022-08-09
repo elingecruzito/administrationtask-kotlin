@@ -33,6 +33,7 @@ class InjectionManager {
         infoprojectViewController.tag = homeMasterViewController.INFOPROJECT_CONTROLLER
         infoprojectViewController.representationDelegate = infoprojectBusinessController
         infoprojectViewController.masterViewController = homeMasterViewController
+        infoprojectViewController.utilerias = utilerias
 
         infoprojectService.informationDelegate = infoprojectBusinessController
         infoprojectService.context = homeMasterViewController

@@ -1,8 +1,3 @@
 package com.developbyte.administrationtask.Model
 
-object ProjectModel {
-
-    var id_project: String? = null
-    var project_name: String? = null
-
-}
+data class ProjectModel(var id_project: String, var project_name: String) {}
