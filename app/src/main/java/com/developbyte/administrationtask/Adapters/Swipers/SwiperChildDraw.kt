@@ -22,20 +22,20 @@ class SwiperChildDraw {
         if (dX > 0) {
             icon = utilerias.drawableToBitmap(ContextCompat.getDrawable(context, R.drawable.ic_baseline_post_add)!!)
             p.setColor(context.getResources().getColor(R.color.blue_background))
-            c.drawRect(itemView!!.left as Float, itemView!!.top as Float, dX,
-                    itemView!!.bottom as Float, p)
+            c.drawRect(itemView!!.left.toFloat(), itemView!!.top.toFloat(), dX,
+                    itemView!!.bottom.toFloat(), p)
             c.drawBitmap(icon!!,
-                    itemView!!.left as Float + utilerias.convertDpToPx(16, context),
-                    itemView!!.top as Float + (itemView!!.bottom as Float - itemView!!.top as Float - icon!!.height) / 2,
+                    itemView!!.left.toFloat() + utilerias.convertDpToPx(16, context),
+                    itemView!!.top.toFloat() + (itemView!!.bottom.toFloat() - itemView!!.top.toFloat() - icon!!.height) / 2,
                     p)
         } else {
             icon = utilerias.drawableToBitmap(ContextCompat.getDrawable(context, R.drawable.ic_baseline_delete_white)!!)
             p.setColor(context.getResources().getColor(R.color.btn_color_red))
-            c.drawRect(itemView!!.right as Float + dX, itemView!!.top as Float,
-                    itemView!!.right as Float, itemView!!.bottom as Float, p)
+            c.drawRect(itemView!!.right.toFloat() + dX, itemView!!.top.toFloat(),
+                    itemView!!.right.toFloat(), itemView!!.bottom.toFloat(), p)
             c.drawBitmap(icon!!,
-                    itemView!!.right as Float - utilerias.convertDpToPx(16, context) - icon!!.width,
-                    itemView!!.top as Float + (itemView!!.bottom as Float - itemView!!.top as Float - icon!!.height) / 2,
+                    itemView!!.right.toFloat() - utilerias.convertDpToPx(16, context) - icon!!.width,
+                    itemView!!.top.toFloat() + (itemView!!.bottom.toFloat() - itemView!!.top.toFloat() - icon!!.height) / 2,
                     p)
         }
         viewHolder.itemView.alpha = ALPHA_FULL - Math.abs(dX) / viewHolder.itemView.width.toFloat()

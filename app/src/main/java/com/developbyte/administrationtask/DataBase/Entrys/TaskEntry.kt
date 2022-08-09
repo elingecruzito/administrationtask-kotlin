@@ -12,8 +12,8 @@ object TaskEntry: BaseColumns {
     const val COLUMN_NAME_STATUS = "task_status"
     const val COLUMN_NAME_ID_PROJECT = "id_project"
 
-    val STATUS_IN_PROGRESS:Int = 0
-    val STATUS_COMPLETE:Int = 1
+    const val STATUS_IN_PROGRESS:Int = 0
+    const val STATUS_COMPLETE:Int = 1
 
     const val CREATE_TABLE = ("CREATE TABLE " + TABLE_NAME + " ( "
             + COLUMN_NAME_ID + " INTEGER PRIMARY KEY,"

@@ -13,7 +13,7 @@ interface IHome {
 
     //Comunica de BussinesController a MasterBussinesController
     interface IHomeTransactionDelegate {
-        fun showInfoProject()
+        fun showInfoProject(idTask:Int?)
         fun showNewProject()
         
     }
@@ -41,19 +41,19 @@ interface IHome {
     interface IHomeInformationHandler{
         fun getTaskInProgress(date: String?)
         fun getTaskComplete(date: String?)
-        fun updateStatusTask(idTask: Int)
-        fun deleteTask(idTask: Int)
+        fun updateStatusTask(idTask: Int?)
+        fun deleteTask(idTask: Int?)
     }
 
     //Comunica de ViewController a Businnes
     interface IHomeRepresentationDelegate {
-        fun showInfoProject()
+        fun showInfoProject(idTask:Int?)
         fun showNewProject()
         fun getDaysOfCurrentMount(mount: Int)
         fun getTaskInProgress(date: String?)
         fun getTaskComplete(date: String?)
         fun getMonthsList()
-        fun updateStatusTask(idTask: Int)
-        fun deleteTask(idTask: Int)
+        fun updateStatusTask(idTask: Int?)
+        fun deleteTask(idTask: Int?)
     }
 }

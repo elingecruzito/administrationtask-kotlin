@@ -7,7 +7,7 @@ import com.developbyte.administrationtask.Model.TasksModel
 interface IInfoProject {
     //Comunica de MasterBussinesController a BussinesController
     interface IInfoProjectTransactionHandler {
-        fun startInfoProject()
+        fun startInfoProject(idTask:Int?)
     }
 
     //Comunica de BussinesController a MasterBussinesController
@@ -17,7 +17,7 @@ interface IInfoProject {
 
     //Comunica de BusinessController a ViewController
     interface IInfoProjectRepresentationHandler {
-        fun showInfoProject()
+        fun showInfoProject(idTask:Int?)
         fun setDataProject(project: ProjectModel?)
         fun setAllProgressTask(progressTask: List<TasksModel?>?)
         fun setAllCompleteTask(completeTask: List<TasksModel?>?)

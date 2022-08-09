@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.provider.Telephony.TextBasedSmsColumns.STATUS_COMPLETE
+import android.util.Log
 import com.developbyte.administrationtask.DataBase.Entrys.ProjectEntry
 import com.developbyte.administrationtask.DataBase.Entrys.TaskAdministrationDBHelper
 import com.developbyte.administrationtask.DataBase.Entrys.TaskEntry
@@ -31,14 +32,15 @@ abstract class AbstractService {
         }
     }
 
-    @SuppressLint("Range")
+    @SuppressLint("Range", "LongLogTag")
     fun loadData(query:String, selectionArgs: Array<String?>, context: Context){
+        initListModel()
         var dbHelper = TaskAdministrationDBHelper(context)
         val db = dbHelper.readableDatabase
         val cursor = db.rawQuery(query, selectionArgs)
+        Log.i("QueryLoad ------------------> ", "$query | $selectionArgs")
         cursor.moveToFirst()
         if(cursor.count > 0){
-            initListModel()
             do {
                 var tasksModel =  TasksModel(
                         cursor.getString(cursor.getColumnIndex(TaskEntry.COLUMN_NAME_TASK)),

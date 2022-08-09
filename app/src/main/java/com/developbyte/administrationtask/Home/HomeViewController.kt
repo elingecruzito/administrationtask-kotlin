@@ -54,15 +54,17 @@ class HomeViewController : AbstractViewController(), IHome.IHomeRepresentationHa
     private var dateSelected:String = ""
 
     private var btnNewProject: FloatingActionButton? = null
+    private val currentYear = Calendar.getInstance()[Calendar.YEAR]
 
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun init(inflater: LayoutInflater?, container: ViewGroup?): View? {
         viewc = inflater?.inflate(R.layout.content_home, container, false);
 
-        dateSelected = (Calendar.getInstance()[Calendar.DAY_OF_MONTH].toString() + "/"
-                + Calendar.getInstance()[Calendar.MONTH] + "/"
-                + Calendar.getInstance()[Calendar.YEAR])
+        val dayselected = if(Calendar.getInstance()[Calendar.DAY_OF_MONTH] < 10) "0${Calendar.getInstance()[Calendar.DAY_OF_MONTH]}" else Calendar.getInstance()[Calendar.DAY_OF_MONTH]
+        val mountSelected = if((Calendar.getInstance()[Calendar.MONTH] + 1 ) < 10) "0${(Calendar.getInstance()[Calendar.MONTH] + 1 )}" else (Calendar.getInstance()[Calendar.MONTH] + 1 )
+
+        dateSelected = "$dayselected/$mountSelected/$currentYear"
 
         txtDayToday = viewc!!.findViewById(R.id.txt_day_today)
         txtDayToday!!.text = (YearMonth.now().month.name + " " + Calendar.getInstance()[Calendar.DAY_OF_MONTH] + ", " + YearMonth.now().year)
@@ -140,13 +142,15 @@ class HomeViewController : AbstractViewController(), IHome.IHomeRepresentationHa
     override fun setDaysOfCurrentMount(daysOfCurrentMount: MutableList<DaysMountModel>) {
         val currentMonth = if (listMonthsAdapeter == null) YearMonth.now().monthValue else listMonthsAdapeter!!.indexSelected
         listDaysMountAdapter!!.setDaysMountModel(daysOfCurrentMount, currentMonth)
+        val dayselected = if(listDaysMountAdapter!!.indexToday + 1 < 10) "0" + (listDaysMountAdapter!!.indexToday + 1) else listDaysMountAdapter!!.indexToday
+        val mountSelected = if(currentMonth < 10) "0$currentMonth" else currentMonth
 
-        dateSelected = ((listDaysMountAdapter!!.indexToday + 1).toString() + "/"
-                + currentMonth + "/"
-                + Calendar.getInstance()[Calendar.YEAR])
+        dateSelected = "$dayselected/$mountSelected/$currentYear"
 
         btnCalendar!!.text = DateFormatSymbols.getInstance().months[currentMonth - 1]
         lstDaysMount!!.scrollToPosition(listDaysMountAdapter!!.indexToday)
+
+        reloadData()
     }
 
     override fun setTaskInProgress(taskInProgress: MutableList<TasksModel>) {
@@ -169,9 +173,15 @@ class HomeViewController : AbstractViewController(), IHome.IHomeRepresentationHa
     }
 
     override fun updateStatusTaskResult(ready: Boolean) {
+        if (ready){
+            reloadData()
+        }
     }
 
     override fun deleteTaskResult(ready: Boolean) {
+        if (ready){
+            reloadData()
+        }
     }
 
     private fun showListMonths(){

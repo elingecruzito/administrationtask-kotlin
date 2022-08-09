@@ -33,7 +33,7 @@ class InfoProjectViewController : AbstractViewController(), IInfoProject.IInfoPr
         activity?.supportFragmentManager?.popBackStack()
     }
 
-    override fun showInfoProject() {
+    override fun showInfoProject(idTask:Int?) {
         masterViewController?.presetFragment(tag)
     }
 

@@ -33,7 +33,7 @@ class ListHomeTaskCompleteAdapter: RecyclerView.Adapter<ListHomeTaskCompleteAdap
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.lyItemTask.setOnClickListener{
-            //representationDelegate!!.showInfoProject(tasksModelList!![position].id_project)
+            representationDelegate!!.showInfoProject(tasksModelList!![position].id_project)
         }
         holder.iconStatusTask.background = context!!.resources.getDrawable(R.mipmap.check)
         holder.txtNameTask.text = tasksModelList!![position].task

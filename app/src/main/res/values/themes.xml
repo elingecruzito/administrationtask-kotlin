@@ -59,6 +59,7 @@
     </style>
 
     <style name="ThemeLabelsLongText">
+        <item name="android:textColor">@color/color_text</item>
         <item name="android:lines">1</item>
         <item name="android:scrollHorizontally">true</item>
         <item name="android:ellipsize">end</item>

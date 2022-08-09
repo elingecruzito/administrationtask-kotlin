@@ -13,8 +13,8 @@ class InfoProjectBusinessController: AbstractBusinessController(), IInfoProject.
     var transactionDelegate: IInfoProject.IInfoProjectTransactionDelegate? = null
     var informationHandler: IInfoProject.IInfoProjectInformationHandler? = null
 
-    override fun startInfoProject() {
-        representationHandler?.showInfoProject()
+    override fun startInfoProject(idTask:Int?) {
+        representationHandler?.showInfoProject(idTask)
     }
 
     override fun getDataProject(id: Int) {

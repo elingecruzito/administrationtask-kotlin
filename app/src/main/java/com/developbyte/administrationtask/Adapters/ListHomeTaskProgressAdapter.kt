@@ -32,7 +32,7 @@ class ListHomeTaskProgressAdapter: RecyclerView.Adapter<ListHomeTaskProgressAdap
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.lyItemTask.setOnClickListener{
-            //representationDelegate!!.showInfoProject(tasksModelList!![position].id_project)
+            representationDelegate!!.showInfoProject(tasksModelList!![position].id_project)
         }
         holder.iconStatusTask.background = context!!.resources.getDrawable(R.mipmap.progress)
         holder.txtNameTask.text = tasksModelList!![position].task

@@ -11,7 +11,6 @@ import com.developbyte.administrationtask.Model.TasksModel
 class HomeService : AbstractService(), IHome.IHomeInformationHandler {
 
     var informationDelegate : IHome.IHomeInformationDelegate? = null
-    private val parameters = ContentValues()
     var context: Context? = null
 
     override fun getTaskInProgress(date: String?) {
@@ -36,13 +35,13 @@ class HomeService : AbstractService(), IHome.IHomeInformationHandler {
         informationDelegate?.setTaskComplete(modelList!!)
     }
 
-    override fun updateStatusTask(idTask: Int) {
-        updateStatusTask(idTask, context!!)
+    override fun updateStatusTask(idTask: Int?) {
+        updateStatusTask(idTask!!, context!!)
         informationDelegate?.updateStatusTaskResult(countUpdate!! > 0)
     }
 
-    override fun deleteTask(idTask: Int) {
-        deleteTask(idTask, context!!)
+    override fun deleteTask(idTask: Int?) {
+        deleteTask(idTask!!, context!!)
         informationDelegate?.deleteTaskResult(countDeletes!! > 0);
     }
 

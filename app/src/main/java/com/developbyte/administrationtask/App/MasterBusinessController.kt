@@ -18,8 +18,8 @@ class MasterBusinessController: IHome.IHomeTransactionDelegate,
         homeController?.startHome()
     }
 
-    override fun showInfoProject() {
-        infoprojectController?.startInfoProject()
+    override fun showInfoProject(idTask:Int?) {
+        infoprojectController?.startInfoProject(idTask)
     }
 
     override fun showNewProject() {

@@ -38,8 +38,8 @@ class HomeBusinessController: AbstractBusinessController(), IHome.IHomeRepresent
         dateFormat = SimpleDateFormat("EEEE")
     }
 
-    override fun showInfoProject() {
-        transactionDelegate?.showInfoProject()
+    override fun showInfoProject(idTask:Int?) {
+        transactionDelegate?.showInfoProject(idTask)
     }
 
     override fun showNewProject() {
@@ -99,11 +99,11 @@ class HomeBusinessController: AbstractBusinessController(), IHome.IHomeRepresent
         representationHandler!!.setMonthList(monthsModelList!!)
     }
 
-    override fun updateStatusTask(idTask: Int) {
+    override fun updateStatusTask(idTask: Int?) {
         informationHandler!!.updateStatusTask(idTask)
     }
 
-    override fun deleteTask(idTask: Int) {
+    override fun deleteTask(idTask: Int?) {
         informationHandler!!.deleteTask(idTask)
     }
 
