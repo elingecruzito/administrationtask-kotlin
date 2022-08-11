@@ -14,6 +14,7 @@
 
     <string name="lbl_tab_title_progress">Task in progress</string>
     <string name="lbl_tab_title_complete">Task complet</string>
+    <string name="lbl_title_chart_task">Tasks</string>
 
     <string name="lbl_title_new_project">Add New Project</string>
     <string name="lbl_field_name_project">Project name</string>
