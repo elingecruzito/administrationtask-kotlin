@@ -26,7 +26,7 @@ class NewProjectService : AbstractService(), INewProject.INewProjectInformationH
         if (context != null) {
             dbHelper = TaskAdministrationDBHelper(context!!)
             db = dbHelper!!.writableDatabase
-            parameters.put(ProjectEntry.COLUMN_NAME_PROJECT, attr.name)
+            parameters.put(ProjectEntry.COLUMN_NAME_PROJECT, name)
             idRow = db?.insert(ProjectEntry.TABLE_NAME, null, parameters)
             parameters.clear()
             for (tasksModel in tasksModelList!!) {
